@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="./style1.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script> 
+		$(document).ready(function(){
+  			$("#formtag1").click(function(){
+    			$("#form1").slideToggle("slow");
+    			$("#form2").hide();
+    			$("#form3").hide();
+    			$("#form4").hide();
+    			$("#form5").hide();
+    			$("#form6").hide();
+  			});
+  			$("#formtag2").click(function(){
+    			$("#form2").slideToggle("slow");
+    			$("#form1").hide();
+    			$("#form3").hide();
+    			$("#form4").hide();
+    			$("#form5").hide();
+    			$("#form6").hide();
+  			});
+  			$("#formtag3").click(function(){
+    			$("#form3").slideToggle("slow");
+    			$("#form2").hide();
+    			$("#form1").hide();
+    			$("#form4").hide();
+    			$("#form5").hide();
+    			$("#form6").hide();
+  			});
+  			$("#formtag4").click(function(){
+    			$("#form4").slideToggle("slow");
+    			$("#form2").hide();
+    			$("#form3").hide();
+    			$("#form1").hide();
+    			$("#form5").hide();
+    			$("#form6").hide();
+  			});
+  			$("#formtag5").click(function(){
+    			$("#form5").slideToggle("slow");
+    			$("#form2").hide();
+    			$("#form3").hide();
+    			$("#form4").hide();
+    			$("#form1").hide();
+    			$("#form6").hide();
+  			});
+  			$("#formtag6").click(function(){
+    			$("#form6").slideToggle("slow");
+    			$("#form2").hide();
+    			$("#form3").hide();
+    			$("#form4").hide();
+    			$("#form5").hide();
+    			$("#form1").hide();
+  			});
+		});
+	</script>
+</head>
+<body>
+	<div class="hero">
+		<h1>Dashboard</h1>
+		<h2 class="usernamemain">Welcome <span class="username">USER</span></h3>
+	</div>
+	<div class="details">
+		<h2>Balance:<br>*******</h2>
+	</div>
+	<div class="main">
+		<div class="register">
+			<h1 class="types">Register</h1>
+			<div class="forms">
+				<a id="formtag1" class="formtag" href="#">General Reserves</a>
+					<div class="formsection" id="form1">
+						<form>
+							<label> Asset Name:</label><input type="text" name="assetname" placeholder="Name of the asset"><br>
+							<label>Asset Value:</label><input type="number" name="assetvalue" placeholder="value of the asset"><br>
+							<label>Reserve Amount:</label><input type="number" name="reserveamt" placeholder="Amount to be reserved"><br>
+							<input type="submit" name="registergeneralreserve">
+						</form>
+					</div>
+				<a class="formtag" id="formtag2" href="#">Credits</a>
+					<div class="formsection" id="form2">
+						<form>
+							<label> Credit A/C:</label><input type="text" name="creditac" placeholder="Name of crediter"><br>
+							<label>Balance:</label><input type="number" name="creditbalance" placeholder="Amount you still owe"><br>
+							<input type="submit" name="registercredits">
+						</form>
+					</div>
+				<a class="formtag" id="formtag3" href="#">Savings</a>
+					<div class="formsection" id="form3">
+						<form>
+							<label> Savings A/C:</label><input type="text" name="savingsac" placeholder="Savings for reason"><br>
+							<label>Amount:</label><input type="number" name="savingsamt" placeholder="How much do you wanna save?"><br>
+							<input type="submit" name="registersavings">
+						</form>
+					</div>
+			</div>
+		</div>
+		<div class="entry">
+			<h1 class="types">Entry</h1>
+			<div class="forms">
+				<a class="formtag" id="formtag4" href="#">Income</a>
+					<div class="formsection" id="form4">
+						<form>
+							<label> Description:</label><input type="text" name="incomedesc" placeholder="Describe the income"><br>
+							<label>Amount:</label><input type="number" name="incomeamt" placeholder="value of the income"><br>
+							<input type="submit" name="enterincome">
+						</form>
+					</div>
+				<a class="formtag" id="formtag5" href="#">Expense</a>
+					<div class="formsection" id="form5">
+						<form>
+							<label> Description:</label><input type="text" name="expensedesc" placeholder="Describe the expense"><br>
+							<label>Amount:</label><input type="number" name="expenseamt" placeholder="Value of the expense"><br>
+							<input type="submit" name="enterexpense">
+						</form>
+					</div>
+				<a class="formtag" id="formtag6" href="#">Credit Entry</a>
+					<div class="formsection" id="form6">
+						<form>
+							<label> Credit A/C:</label><input type="number" list="creditacs" placeholder="list of credit account"><br>
+							<datalist id="creditacs">
+								<!--<option value="232"></option>-->
+							</datalist>
+							<label>Amount:</label><input type="number" name="creditpaid" placeholder="credit paid"><br>
+							<input type="submit" name="registersavings">
+						</form>
+					</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

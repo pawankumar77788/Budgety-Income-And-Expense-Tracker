@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<link rel="icon" href="/static/css/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="/static/css/style1.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script type="text/javascript" src="/static/js/calculator.js"></script>
+        <link rel="stylesheet" media="screen, print, handheld" type="text/css" href="/static/css/calculator.css" />
+	<script> 
+		$(document).ready(function(){
+			if("{{expdetails}}"){
+				$( "div.success" ).text("An Expense of Rs. {{expdetails.amount}} was incurred on the name of {{expdetails.description}}");
+				$("div.success").css({"background-color":"#ffbaba","color":"#cf0000"});
+			}
+
+			if("{{incdetails}}"){
+				$( "div.success" ).text("An Income of Rs. {{incdetails.amount}} was Recieved on the name of {{incdetails.description}}");
+				$("div.success").css({"background-color":"#bcfca2","color":"#3c763d"});
+			}
+
+			if("{{GRdetails}}"){
+				$( "div.success" ).text("A Reserve of Rs. {{GRdetails.reserveamt}} was saved for the asset {{GRdetails.assetname}}");
+				$("div.success").css({"background-color":"#fdff6b","color":"#fabb00"});
+			}
+
+			if("{{savingsdetails}}"){
+				$( "div.success" ).text("A Savings of Rs. {{savingsdetails.amount}} was saved for the purpose of {{savingsdetails.savingsaccount}}");
+				$("div.success").css({"background-color":"#c78cfa","color":"#400085"});
+			}
+
+			if("{{creditdetails}}"){
+				$( "div.success" ).text("A Credit of Rs. {{creditdetails.creditbalance}} was borrowed from {{creditdetails.creditaccount}}");
+				$("div.success").css({"background-color":"#bdfeff","color":"#0011ff"});
+			}
+
+			if("{{creditentrydetails}}"){
+				if("{{creditentrydetails.balancecleared}}"){
+					$( "div.success" ).text("Paid back {{creditentrydetails.creditaccount}} Rs. {{creditentrydetails.amountpaid}} of his credit balance with left over balance of Rs. {{creditentrydetails.creditbalance}}");
+				}else{
+					$("div.success").css({"background-color":"#ffbdc8","color":"#ff003c"});
+					$( "div.success" ).text("Cleared {{creditentrydetails.creditaccount}}'s credit balance and successfully removed his account with final payment of Rs. {{creditentrydetails.amountpaid}}");
+				}
+				$("div.success").css({"background-color":"#ffbdc8","color":"#ff003c","font-size":"15px"});
+			}
+
+			if("{{added}}"){
+				$( "div.success" ).fadeIn( 500 ).delay( 3000 ).fadeOut( 700 );
+			}
+  			$("#formtag1").click(function(){
+    			$("#form1").slideToggle("slow");
+    			$("#form2").hide();
+    			$("#form3").hide();
+    			$("#form4").hide();
+    			$("#form5").hide();
+    			$("#form6").hide();
+    			$("#formtag2").slideToggle();
+    			$("#formtag3").slideToggle();
+    			$("#formtag4").show();
+    			$("#formtag5").show();
+    			$("#formtag6").show();
+    			$('.integratecalculator').hide();
+  			});
+  			$("#formtag2").click(function(){
+    			$("#form2").slideToggle("slow");
+    			$("#form1").hide();
+    			$("#form3").hide();
+    			$("#form4").hide();
+    			$("#form5").hide();
+    			$("#form6").hide();
+    			$("#formtag1").slideToggle();
+    			$("#formtag3").slideToggle();
+    			$("#formtag4").show();
+    			$("#formtag5").show();
+    			$("#formtag6").show();
+    			$('.integratecalculator').hide();
+  			});
+  			$("#formtag3").click(function(){
+    			$("#form3").slideToggle("slow");
+    			$("#form2").hide();
+    			$("#form1").hide();
+    			$("#form4").hide();
+    			$("#form5").hide();
+    			$("#form6").hide();
+    			$("#formtag1").slideToggle();
+    			$("#formtag2").slideToggle();
+    			$("#formtag4").show();
+    			$("#formtag5").show();
+    			$("#formtag6").show();
+    			$('.integratecalculator').hide();
+  			});
+  			$("#formtag4").click(function(){
+    			$("#form4").slideToggle("slow");
+    			$("#form2").hide();
+    			$("#form3").hide();
+    			$("#form1").hide();
+    			$("#form5").hide();
+    			$("#form6").hide();
+    			$("#formtag5").slideToggle();
+    			$("#formtag6").slideToggle();
+    			$("#formtag1").show();
+    			$("#formtag2").show();
+    			$("#formtag3").show();
+    			$('.integratecalculator').hide();
+  			});
+  			$("#formtag5").click(function(){
+    			$("#form5").slideToggle("slow");
+    			$("#form2").hide();
+    			$("#form3").hide();
+    			$("#form4").hide();
+    			$("#form1").hide();
+    			$("#form6").hide();
+    			$("#formtag4").slideToggle();
+    			$("#formtag6").slideToggle();
+    			$("#formtag1").show();
+    			$("#formtag2").show();
+    			$("#formtag3").show();
+    			$('.integratecalculator').hide();
+  			});
+  			$("#formtag6").click(function(){
+    			$("#form6").slideToggle("slow");
+    			$("#form2").hide();
+    			$("#form3").hide();
+    			$("#form4").hide();
+    			$("#form5").hide();
+    			$("#form1").hide();
+    			$("#formtag4").slideToggle();
+    			$("#formtag5").slideToggle();
+    			$("#formtag1").show();
+    			$("#formtag2").show();
+    			$("#formtag3").show();
+    			$('.integratecalculator').hide();
+  			});
+		});
+	</script>
+	<style type="text/css">
+		
+::-webkit-scrollbar {
+    width: 6px;
+} 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+} 
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+	.calc_btn{
+		background-color: #45f7bf;
+		border-radius: 5px;
+		border: 2px solid #0800ff;
+	}
+
+	input[type=file]{
+		position: relative;
+		right: -20px;
+		width: 70%;
+		margin: 5px;
+		padding: 7px;
+		border-radius: 4px;
+		border: 2px solid #45f7bf;
+	}
+	.main{
+		width: 1280px;
+		top: 150px;
+		height: 459px;
+	}
+	.entry{
+		width: 595px;
+		height: 410px;
+		margin: 10px;
+		margin-left: 5px;
+	}
+	.calculator{
+		height: 100px;
+	}
+	.register{
+		width: 595px;
+		height: 410px;
+		margin: 10px;
+		margin-right: 5px;
+	}
+	.hero{
+		width: 517px;
+		height: 80px;
+	}
+	</style>
+</head>
+<body>
+	<div class="hero">
+		<h1 style="position: absolute;top: 29px;">Dashboard</h1>
+		<h2 class="usernamemain" style="position: absolute;top: 86px;">Welcome <span class="username" style="padding-bottom: 12px;font-weight: 600;">{{userdetails.username}}<a href="/edit/{{ userdetails.useremail }}"><i class="fa fa-edit" style="font-size:25px;color: #45f7bf;position: relative;top: 6px;left: 5px;"></i>
+		</a></span></h2>
+	</div>
+	<div class="details" style="right: 30px;">
+		<h2>{{liquid.liquid}}<br>&#8377; {{liquid.amt}}</h2>
+	</div>
+	<div class="main">
+		<div class="alert-box success" style="padding: 12px;
+		position: absolute;
+		left: 260px;
+		top: -130px;
+		font-size: 20px;
+    margin-bottom: 0px;
+    margin-top: 9px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    border-color: #d6e9c6;
+    max-width: 200px;
+    max-height: 85px;
+    display: none;"></div>
+		<div class="register">
+			<h1 class="types">Register</h1>
+			<div class="forms">
+				<a id="formtag1" class="formtag" href="#">General Reserves</a>
+					<div class="formsection" id="form1">
+						<form method="post" action="SubmitGeneralReserve" enctype="multipart/form-data">
+							{% csrf_token %}
+							<label> Asset Name:</label><input type="text" name="assetname" autocomplete="off" placeholder="Name of the asset" value="{{form.assetname}}" required><br>
+							<label>Asset Value:</label><input type="number" name="assetvalue" placeholder="value of the asset" value="{{form.assetvalue}}" required><br>
+							<label>Reserve Amount:</label><input type="number" name="reserveamt" style="width: 65%;" placeholder="Amount to be reserved" value="{{form.reserveamt}}" required><br>
+							<label>Proof:</label><input type="file" name="proof"><br>
+							{{form.useremail}}
+							{{form.expenseid}}
+							{{form.date}}
+							{{form.GRid}}
+							<input type="submit" name="registergeneralreserve">
+						</form>
+					</div>
+				<a class="formtag" id="formtag2" href="#">Credits</a>
+					<div class="formsection" id="form2">
+						<form method="post" action="SubmitCredit" enctype="multipart/form-data">
+							{% csrf_token %}
+							<label> Credit A/C:</label><input type="text" name="creditac" autocomplete="off" value="{{form.creditaccount}}" required placeholder="Name of crediter"><br>
+							<label>Balance:</label><input type="number" name="creditbalance" value="{{form.creditbalance}}" required placeholder="Amount you still owe"><br>
+							<label>Proof:</label><input type="file" name="proof"><br>
+							{{form.useremail}}
+							{{form.incomeid}}
+							{{form.date}}
+							{{form.creditid}}
+							<input type="submit" name="registercredits">
+						</form>
+					</div>
+				<a class="formtag" id="formtag3" href="#">Savings</a>
+					<div class="formsection" id="form3">
+						<form method="post" action="SubmitSavings" enctype="multipart/form-data">
+							{% csrf_token %}
+							<label> Savings A/C:</label><input type="text" name="savingsac" placeholder="Savings for reason" autocomplete="off" required value="{{form.savingsaccount}}"><br>
+							<label>Amount:</label><input type="number" name="savingsamt" placeholder="How much do you wanna save?" required value="{{form.amount}}"><br>
+							<label>Proof:</label><input type="file" name="proof"><br>
+							{{form.useremail}}
+							{{form.expenseid}}
+							{{form.date}}
+							{{form.savingsid}}
+							<input type="submit" name="registersavings">
+						</form>
+					</div>
+			</div>
+		</div>
+		<div class="entry">
+			<h1 class="types">Entry</h1>
+			<div class="forms">
+				<a class="formtag" id="formtag4" href="#">Income</a>
+					<div class="formsection" id="form4">
+						<form method="post" action="SubmitIncome" enctype="multipart/form-data">
+							{% csrf_token %}
+							<label> Description:</label><input type="text" name="incomedesc" value="{{ form.description }}" placeholder="Describe the income" autocomplete="off" required><br>
+							<label>Amount:</label><input type="number" name="incomeamt" value="{{ form.amount }}" placeholder="value of the income" required><br>
+							<label>Proof:</label><input type="file" name="proof"><br>
+							{{ form.useremail }}
+							{{ form.incomeid }}
+							{{ form.date }}
+							<input type="submit" name="enterincome">
+						</form>
+					</div>
+				<a class="formtag" id="formtag5" href="#">Expense</a>
+					<div class="formsection" id="form5">
+						<form method="post" action="SubmitExpense" enctype="multipart/form-data">
+							{% csrf_token %}
+							<label> Description:</label><input type="text" name="expensedesc" autocomplete="off" placeholder="Describe the expense" value="{{ form.description }}"><br>
+							<label>Amount:</label><input type="number" name="expenseamt" placeholder="Value of the expense" name="{{ form.amount }}"><br>
+							<label>Proof:</label><input type="file" name="proof"><br>
+							{{ form.useremail }}
+							{{ form.expenseid }}
+							{{ form.date }}
+							<input type="submit" name="enterexpense">
+						</form>
+					</div>
+				<a class="formtag" id="formtag6" href="#">Credit Entry</a>
+					<div class="formsection" id="form6">
+						<form method="post" action="SubmitCreditEntry" enctype="multipart/form-data">
+							<!--{% csrf_token %}
+							{{ creditform.as_p }}
+							-->
+							{% csrf_token %}
+							<label for="creditors">Credit Account:</label>
+							  <input list="creditors" name="creditaccount" id="creditor" type="text" autocomplete="off" placeholder="Creditor whom you are supposed to pay">
+							  <datalist id="creditors">
+							  	{% for creditor in creditform %}
+							    <option value="{{creditor.creditaccount}}">{{creditor.creditbalance}}</option>
+							    {% endfor %}
+							  </datalist>
+							<label>Amount paid:</label><input type="number" name="amountpaid" placeholder="Amount paid to creditor"><br>
+							<label>Proof:</label><input type="file" name="proof"><br>
+							<input type="submit" name="paycreditback">
+						</form>
+					</div>
+			</div>
+		</div>
+	</div>
+	<div class="floatingtag" style="position: absolute;left: 589px;top: 10px;background-color: #b0ffe5;padding: 7px;border-radius: 50px;
+	border: 2px solid #1492ff;
+	margin-right: 15px;
+	margin-top: 15px;">
+		<a href="logout" style="text-decoration: none;font-size: 18px;color: #000000"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
+	</div>
+	<div class="floatingtag" style="position: absolute;left: 530px;top: 60px;background-color: #b0ffe5;padding: 7px;border-radius: 50px;
+	border: 2px solid #1492ff;
+	margin-right: 15px;
+	margin-top: 15px;">
+		<a href="showdetails" style="text-decoration: none;font-size: 18px;color: #000000"><i class="fa fa-eye" aria-hidden="true"></i>Show Detailed Records</a>
+	</div>
+
+	<div class="loghistory" style="position: absolute;right: 322px;top: 87px;">
+		<a href="showloghistory" style="font-size: 26px;border-radius: 10px;background-color: #b0ffe5;border: 2px solid #1492ff;width: 48px;cursor: pointer;padding: 3px 11px;color: #000000;"><i class="fa fa-history" aria-hidden="true"></i></a>
+	</div>
+	<div class="floatingtag" style="position: absolute;left: 854px;top: 10px;background-color: #b0ffe5;padding: 7px;border-radius: 10px;
+	border: 2px solid #1492ff;
+	margin-right: 15px;
+	margin-top: 15px;">
+		<a href="taxation" style="text-decoration: none;font-size: 18px;color: #000000"><img src="https://image.flaticon.com/icons/png/32/600/600863.png"/></a>
+	</div>
+	<div class="floatingtag" style="position: absolute;left: 910px;top: 10px;background-color: #b0ffe5;padding: 7px;border-radius: 10px;
+	border: 2px solid #1492ff;
+	margin-right: 15px;
+	margin-top: 15px;">
+		<a href="#" onclick="showcalculator()" style="text-decoration: none;font-size: 18px;color: #000000"><img src="https://img.icons8.com/pastel-glyph/30/000000/calculator.png"/></a>
+	</div>
+	<div class="integratecalculator" style="display: none;">
+	<table class="calculator" id="calc" style="right: 760px;width: 280px;border: 2px solid #1492ff;border-radius: 10px;background-color: #b0ffe5;">
+            <tr>
+                <td colspan="4" class="calc_td_result">
+                	<div class="calchead">
+                    <input type="text" readonly="readonly" name="calc_result" id="calc_result" class="calc_result" onkeydown="javascript:key_detect_calc('calc',event);" style="display: inline;width: 63%;right: 10px;margin: 5px;border-radius: 10px;" />
+                    <div class="tooltip" style="display: inline;right: 4px;top: 6px;">
+					<button onclick="myFunction()" onmouseout="outFunc()" style="width: 53px;border: none;background-color: #fff6a8;border-radius: 10px;">
+					  <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+					  <img src="https://img.icons8.com/nolan/25/copy-2.png"/>
+					  </button>
+					</div>
+					<button id="contentofcalc" onclick="hidecalc()" style="position:relative;top: 2px;border-radius: 5px;background-color: #0800ff;color: #ffffff;font-size: 20px;border-color: #1492ff;">Show</button>
+                    </div>
+                </td>
+            </tr>
+            <tr class="contentcalc" style="display: none;">
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="CE" onclick="javascript:f_calc('calc','ce');" />
+                </td>
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="&larr;" onclick="javascript:f_calc('calc','nbs');" />
+                </td>
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="%" onclick="javascript:f_calc('calc','%');" />
+                </td>
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="+" onclick="javascript:f_calc('calc','+');" />
+                </td>
+            </tr>
+            <tr class="contentcalc" style="display: none;">
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="7" onclick="javascript:add_calc('calc',7);" />
+                </td>
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="8" onclick="javascript:add_calc('calc',8);" />
+                </td>
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="9" onclick="javascript:add_calc('calc',9);" />
+                </td>
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="-" onclick="javascript:f_calc('calc','-');" />
+                </td>
+            </tr>
+            <tr class="contentcalc" style="display: none;">
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="4" onclick="javascript:add_calc('calc',4);" />
+                </td>
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="5" onclick="javascript:add_calc('calc',5);" />
+                </td>
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="6" onclick="javascript:add_calc('calc',6);" />
+                </td>
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="x" onclick="javascript:f_calc('calc','*');" />
+                </td>
+            </tr>
+            <tr class="contentcalc" style="display: none;">
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="1" onclick="javascript:add_calc('calc',1);" />
+                </td>
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="2" onclick="javascript:add_calc('calc',2);" />
+                </td>
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="3" onclick="javascript:add_calc('calc',3);" />
+                </td>
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="&divide;" onclick="javascript:f_calc('calc','');" />
+                </td>
+            </tr>
+            <tr class="contentcalc" style="display: none;">
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="0" onclick="javascript:add_calc('calc',0);" />
+                </td>
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="&plusmn;" onclick="javascript:f_calc('calc','+-');" />
+                </td>
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="," onclick="javascript:add_calc('calc','.');" />
+                </td>
+                <td class="calc_td_btn">
+                        <input type="button" class="calc_btn" value="=" onclick="javascript:f_calc('calc','=');" />
+                </td>
+            </tr>
+        </table>
+        </div>
+        <script type="text/javascript">
+                document.getElementById('calc').onload=init_calc('calc');
+        </script>
+</body>
+</html>

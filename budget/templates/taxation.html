@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Log History</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style type="text/css">
+    h1{
+  font-size: 30px;
+  color: #000000;
+  text-transform: uppercase;
+  font-weight: 300;
+  text-align: center;
+  margin-bottom: 15px;
+}
+table{
+  width:100%;
+  table-layout: fixed;
+}
+.tbl-header{
+  background-color: rgba(255,255,255,0.3);
+ }
+.tbl-content{
+  height:400px;
+  overflow-x:auto;
+  margin-top: 0px;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.details{
+  position: fixed;
+  right: 35px;
+  top: 1px;
+  background-color: #b0ffe5;
+  padding: 7px;
+  font-size: 25px;
+  border-radius: 10px;
+  border: 2px solid #1492ff;
+  margin-right: 15px;
+  margin-top: 15px;
+}
+
+th{
+  padding: 20px 15px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+  color: #000000;
+  text-transform: uppercase;
+}
+td{
+  padding: 15px;
+  text-align: center;
+  vertical-align:middle;
+  font-weight: 300;
+  font-size: 18px;
+  color: #fff;
+  border-bottom: solid 1px rgba(255,255,255,0.1);
+}
+
+.faq-table-title{
+  color: #000000;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: auto;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: -60%;
+  left: -9%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+/* demo styles */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+body{
+  background: -webkit-linear-gradient(left, #ffa200, #73c7ff);
+  background: linear-gradient(to right, #ffa200, #b0ff05); /* #fc0339, #4400ff */
+  font-family: 'Roboto', sans-serif;
+}
+section{
+  margin: 50px;
+}
+
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+
+li{
+  background-color: #b0ffe5;
+  border: 2px solid #1492ff;
+  display: inline-block;
+  padding: 15px;
+  margin: 40px;
+  border-radius: 10px;
+  width: 123px;
+  margin-left: -6px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* follow me template */
+.made-with-love {
+  margin-top: 40px;
+  padding: 10px;
+  clear: left;
+  text-align: center;
+  font-size: 10px;
+  font-family: arial;
+  color: #fff;
+}
+.made-with-love i {
+  font-style: normal;
+  color: #F50057;
+  font-size: 14px;
+  position: relative;
+  top: 2px;
+}
+
+input[type=submit] {
+  background-color: #45f7bf;
+  border: 2px solid #1492ff;
+  margin-right: 15px;
+  margin-top: 15px;
+  position: relative;
+  cursor: pointer;
+  left: 440px;
+  border-radius: 50px;
+  padding: 10px;
+}
+
+h3{
+  margin: 15px;
+}
+
+.formpage{
+  padding: 30px;
+  font-weight: bolder;
+}
+.made-with-love a {
+  color: #fff;
+  text-decoration: none;
+}
+.made-with-love a:hover {
+  text-decoration: underline;
+}
+
+
+/* for custom scrollbar for webkit browser*/
+
+::-webkit-scrollbar {
+    width: 6px;
+} 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+} 
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+  </style>
+<link rel="icon" href="/static/css/favicon.ico">
+<script>
+  $(document).ready(function(){
+      if("{{indicator}}"=="Updated Successfully!"||"{{indicator}}"=="Deleted Successfully!"){
+        $( "div.success" ).fadeIn( 500 ).delay( 3000 ).fadeOut( 700 );
+      } 
+  })
+</script>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<section>
+  <!--for demo wrap-->
+  <div class="floatingtag" style="position: fixed;left: 45px;top: 10px;background-color: #b0ffe5;padding: 7px;border-radius: 50px;
+  border: 2px solid #1492ff;
+  margin-right: 15px;
+  margin-top: 15px;">
+    <a href="backtodashboard" style="text-decoration: none;font-size: 18px;color: #000000"><i class="fa fa-sign-out" aria-hidden="true"></i>Back To Dashboard</a>
+  </div>
+  <div class="modeldetails">
+    <ul>
+      <li>Incomes<br>{% if totalincome == None %} None {% else %} &#8377; {{totalincome}} {% endif %}</li>
+      <li>Expenses<br>{% if totalexpense == None %} None {% else %} &#8377; {{totalexpense}} {% endif %}</li>
+      <li>Reserve<br>{% if totalgeneralreserves == None %} None {% else %} &#8377; {{totalgeneralreserves}} {% endif %}</li>
+      <li>Savings<br>{% if totalsavings == None %} None {% else %} &#8377; {{totalsavings}} {% endif %}</li>
+      <li>Credits<br>{% if totalcredits == None %} None {% else %} &#8377; {{totalcredits}} {% endif %}</li>
+      <li>Credit Entrys<br>{% if totalcreditentrys == None %} None {% else %} &#8377; {{totalcreditentrys}} {% endif %}</li>
+    </ul>
+  </div>
+  <h1>TAXATION RECORDS</h1>
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>Date and Time</th>
+          <th>Fiscal Period</th>
+          <th>Tax Payable</th>
+          <th>Proof</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr>
+          {% for taxobj in taxobjects %}
+          <td>{{taxobj.date}}</td>
+          <td>{{taxobj.duration}}</td>
+          <td>{{taxobj.payableamt}}</td>
+          <td><a href="{{taxobj.proof.url}}"><i class="fa fa-file" style="color: #ff0582;font-size: 30px;"></i></a></td>
+          <td>{% if taxobj.status == False and current_fiscal_period != taxobj.duration %}<button class="tooltip" id="myBtn" disabled style="text-decoration: none;font-size: 18px;color: #000000;background-color: #b0ffe5;padding: 7px;border-radius: 50px;
+  border: 2px solid #1492ff;
+  "><span class="tooltiptext">You can pay only after the current fiscal/Accounting Period Ends {{current_fiscal_period}}</span>Submit As Paid</button> {% endif %} {% if taxobj.status == False and current_fiscal_period == taxobj.duration %} <button id="myBtn" style="text-decoration: none;font-size: 18px;color: #000000;background-color: #b0ffe5;padding: 7px;border-radius: 50px;
+  border: 2px solid #1492ff;cursor: pointer;
+  ">Submit as Paid</button> {% endif %} {% if taxobj.status == True %}<button id="myBtn" disabled style="text-decoration: none;font-size: 18px;color: #000000;background-color: #b0ffe5;padding: 7px;border-radius: 50px;
+  border: 2px solid #1492ff;
+  ">Paid</button>{% endif %}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="formpage" style="background-color: #ffdb3b;height: 280px;">
+          <form method="post" action="SubmitTaxAsPaid/{{taxobj.duration}}" enctype="multipart/form-data">
+          {% csrf_token %}
+          <h3>Date As on Submition: {{taxobj.date}}</h3><h3>Fiscal-Period for Paying Tax: {{taxobj.duration}}</h3><h3>
+          Amount Payable for Tax Under the New Regime: {{taxobj.payableamt}}</h3>
+          <h3>Proof:</h3><input style="margin-left: 15px;margin-bottom: 10px;" type="file" name="proof"><br>
+          <div class="faq-table" style="position: relative;left: 580px;top:-170px;height: 250px;margin: 0px;width: 360px;overflow-x: none;overflow-y: scroll;background-color: #ff8c66;border-radius: 10px;padding: 20px;">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <th class="faq-table-title" style="position: relative;left: 105px;font-weight: 600;">INDIAN TAX REGIME(NEW)</th>
+                              <th></th>
+                            </tr>
+                            <tr>
+                              <td class="faq-table-title">Male/Female</td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td class="faq-table-title">Income</td>
+                              <td class="faq-table-title">Tax Rate</td>
+                            </tr>
+                              <tr><td>Upto Rs. 2,50,000</td>
+                              <td>Nil.</td>
+                            </tr><tr>
+                              <td>Rs. 2,50,001 to Rs. 5,00,000</td>
+                              <td>5%</td>
+                            </tr>
+                            <tr>
+                              <td>Rs. 5,00,001 to Rs. 10,00,000 </td>
+                              <td>Rs. 12,500 + 20% of Income exceeding Rs. 500,000.</td>
+                            </tr>
+                            <tr>
+                              <td>Above Rs. 10,00,000 </td>
+                              <td>Rs. 1,12,500 + 30%  of Income exceeding of Rs 10,00,000.</td>
+                            </tr>
+                            <!-- <tr>
+                              <td></td>
+                              <td></td>
+                            </tr> -->
+                            <tr>
+                              <td class="faq-table-title">Senior citizen</td>
+                              <td></td>
+                            </tr>
+                            <!-- <tr>
+                              <td></td>
+                              <td></td>
+                            </tr> -->
+                            <tr>
+                              <td class="faq-table-title">Income</td>
+                              <td class="faq-table-title">Tax Rate</td>
+                            </tr>
+                            <tr>
+                              <td>Upto Rs.3,00,000 </td>
+                              <td>Nil.</td>
+                            </tr>
+                            <tr>
+                              <td>Rs. 3,00,001 to Rs. 5,00,000</td>
+                              <td>5%</td>
+                            </tr>
+                            <tr>
+                              <td>Rs. 5,00,001 to Rs. 10,00,000 </td>
+                              <td>Rs.10,000 + 20% of Income exceeding Rs. 500,000.</td>
+                            </tr><tr>
+                              <td>Above Rs. 10,00,000 </td>
+                              <td>Rs. 1,10,000 + 30%  of Income exceeding of Rs 10,00,000.</td>
+                            </tr>
+                            <!-- <tr>
+                              <td></td>
+                              <td></td>
+                            </tr> -->
+                            <tr>
+                              <td class="faq-table-title">Very senior citizen</td>
+                              <td></td>
+                            </tr>
+                            <!-- <tr>
+                              <td></td>
+                              <td></td>
+                            </tr> -->
+                            <tr>
+                              <td class="faq-table-title">Income </td>
+                              <td class="faq-table-title">Tax Rate </td>
+                            </tr>
+                            <tr>
+                              <td>Upto Rs. 5,00,000 </td>
+                              <td>Nil.</td>
+                            </tr>
+                            <tr>
+                              <td>Rs. 5,00,001 to Rs. 10,00,000 </td>
+                              <td>20%</td>
+                            </tr>
+                            <tr>
+                              <td>Above Rs. 10,00,000 </td>
+                              <td>Rs. 1,00,000 + 30%  of Income exceeding of Rs 10,00,000.</td>
+                            </tr>
+                            <!-- <tr>
+                              <td></td>
+                              <td></td>
+                            </tr> -->
+                          </tbody>
+                        </table>
+                      </div>
+          <input style="position: relative;left: 270px;top:-220px;" type="submit" name="SubmitTaxAsPaid">
+        </form>
+        </div>
+      </div>
+      {% endfor%}
+    </div>
+  </div>  
+</section>
+
+<script type="text/javascript">
+  // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+  // '.tbl-content' consumed little space for vertical scrollbar, scrollbar width depend on browser/os/platfrom. Here calculate the scollbar width .
+$(window).on("load resize ", function() {
+  var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+  $('.tbl-header').css({'padding-right':scrollWidth});
+}).resize();
+</script>
+
+</body>
+</html>
+
+

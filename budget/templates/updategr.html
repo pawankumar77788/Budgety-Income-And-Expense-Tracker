@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Update General Reserve Details</title>
+	<style type="text/css">
+		input[type=text],
+input[type=number],
+input[type=date],
+input[type=email],
+input[type=password],
+select,
+textarea {
+	position: relative;
+	right: -20px;
+	width: 70%;
+	margin: 5px;
+	padding: 7px;
+	border-radius: 4px;
+	border: 2px solid #45f7bf;
+}
+
+input[type=submit] {
+	position: relative;
+	left: 230px;
+	display: inline-block;
+	padding: 10px 30px;
+	font-weight: 300;
+	text-decoration: none;
+	border-radius: 200px;
+	color: #000000;
+	font-weight: 600;
+	cursor: pointer;
+	border
+	transition: background-color 0.2s, border 0.2s, color 0.2s;
+}
+
+input[type=submit] {
+	background-color: #45f7bf;
+	border: 2px solid #1492ff;
+	margin-right: 15px;
+	margin-top: 15px;
+	left: 80px;
+}
+	</style>
+	<link rel="icon" href="/static/css/favicon.ico">
+</head>
+<body style="background-color: #d6f0ff">
+    <form method="POST" class="post-form" action="/updateobj/generalreserve/{{generalreserveobj.GRid}}">
+    	{% csrf_token %}
+		<table style="border-style:none;background-color: #fff6a8; padding: 10px;margin: 10px;border-radius: 10px;">
+			<tr>
+				<td><label>
+                Asset Name<span class="req">*</span>
+              </label></td>
+				<td><input type="text" name="assetname" required value="{{ generalreserveobj.assetname }}" autocomplete="off" /></td>
+			</tr>
+			<tr>
+				<td><label>
+              Asset Value<span class="req">*</span>
+            </label></td>
+				<td><input type="number" name="assetvalue" required value="{{ generalreserveobj.assetvalue }}" autocomplete="off"/></td>
+			</tr>
+			<tr>
+				<td><label>
+              Reserve Amount<span class="req">*</span>
+            </label></td>
+				<td><input type="number" name="reserveamt" required value="{{ generalreserveobj.reserveamt }}" autocomplete="off"/></td>
+			</tr>
+		</table>
+		<input type="submit" class="button button-block" name="update" />
+	</form>
+</body>
+</html>
